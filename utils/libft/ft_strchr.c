@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crizapat <crizapat@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: crizapat <crizapat@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 16:01:53 by crizapat          #+#    #+#             */
-/*   Updated: 2025/01/17 16:02:18 by crizapat         ###   ########.fr       */
+/*   Created: 2024/01/22 12:33:41 by crizapat          #+#    #+#             */
+/*   Updated: 2024/03/20 00:50:30 by crizapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H 
-# define MINITALK_H 
-# include "utils/libft/libft.h"
-#include <stdio.h>
-#include <signal.h>
+#include "libft.h"
 
-#endif
+char	*ft_strchr(const char *str, int charac)
+{
+	while ((char) charac != *str)
+	{
+		if (!*str)
+			return (0);
+		str++;
+	}
+	return ((char *)str);
+}

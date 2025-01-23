@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crizapat <crizapat@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: crizapat <crizapat@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 16:01:53 by crizapat          #+#    #+#             */
-/*   Updated: 2025/01/17 16:02:18 by crizapat         ###   ########.fr       */
+/*   Created: 2024/01/22 11:41:35 by crizapat          #+#    #+#             */
+/*   Updated: 2024/01/22 12:33:16 by crizapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H 
-# define MINITALK_H 
-# include "utils/libft/libft.h"
-#include <stdio.h>
-#include <signal.h>
+#include "libft.h"
 
-#endif
+int	ft_tolower(int charac)
+{
+	if (charac >= 65 && charac <= 90)
+		return (charac + 32);
+	return (charac);
+}
