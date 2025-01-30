@@ -6,13 +6,13 @@
 /*   By: crizapat <crizapat@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:01:26 by crizapat          #+#    #+#             */
-/*   Updated: 2025/01/23 12:38:16 by crizapat         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:50:44 by crizapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minitalk.h"
 
-void printBinary(int pid, char *message)
+void signal_emitter(int pid, char *message)
 {
 	int i, letter;
 
@@ -22,10 +22,12 @@ void printBinary(int pid, char *message)
 		i = 7;
 		while (i >= 0)
 		{
-			if ((unsigned char)message[letter] & (1 << i))
+			if ((unsigned char)message[letter] & (1 << i)) {
 				kill(pid, SIGUSR1);
-			else
+			}
+			else {
 				kill(pid, SIGUSR2);
+			}
 			i--;
 			usleep(90);
 		}
@@ -43,20 +45,20 @@ int main(int argc, char **argv)
 		process_id = ft_atoi(argv[1]);
 		if (process_id < 0)
 		{
-			printf("[WRONG PID] -- try again\n");
+			ft_printf("[WRONG PID] -- try again\n");
 			return 0;
 		}
 		message = argv[2];
 		if (message[0] == 0)
 		{
-			printf("[WRONG	MESSAGE] -- try again\n");
+			ft_printf("[WRONG MESSAGE] -- try again\n");
 			return 0;
 		}
-		printBinary(process_id, message);
+		signal_emitter(process_id, message);
 	}
 	else
 	{
-		printf("[INVALID ARGUMENTS] too few arguments, try again please");	
+		ft_printf("[INVALID ARGUMENTS] too few arguments, try again please");	
 	}
 	return 0;
 }
