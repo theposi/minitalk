@@ -6,7 +6,7 @@
 /*   By: crizapat <crizapat@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:01:53 by crizapat          #+#    #+#             */
-/*   Updated: 2025/01/24 12:39:02 by crizapat         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:39:53 by crizapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINITALK_H 
 
 # include "utils/libft/libft.h"
+# include "utils/ft_printf/ft_printf.h"
 # include <stdio.h>
 # include <signal.h>
 # include <unistd.h>
