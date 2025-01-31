@@ -6,12 +6,12 @@
 #    By: crizapat <crizapat@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 14:24:57 by crizapat          #+#    #+#              #
-#    Updated: 2024/03/17 23:36:10 by crizapat         ###   ########.fr        #
+#    Updated: 2025/01/31 15:00:21 by crizapat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	libft.a
-CC			=	gcc
+CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 SRC			=	ft_isalpha.c	\
 				ft_isalnum.c	\
