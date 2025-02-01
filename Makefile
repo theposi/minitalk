@@ -6,7 +6,7 @@
 #    By: crizapat <crizapat@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 15:00:45 by crizapat          #+#    #+#              #
-#    Updated: 2025/01/31 21:14:55 by crizapat         ###   ########.fr        #
+#    Updated: 2025/02/01 02:17:32 by crizapat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,31 +34,33 @@ CLIENT_OBJ	=	$(CLIENT_SRC:.c=.o)
 all: $(SERVER_EXE) $(CLIENT_EXE)
 
 $(SERVER_EXE): $(SERVER_OBJ) $(LIBFT) $(PRINTF)
-	$(CC) $(FLAGS) $(SERVER_OBJ) $(LIBFT) $(PRINTF) -o $(SERVER_EXE)
-	@echo "$(SERVER_EXE) copiled."
+	@$(CC) $(FLAGS) $(SERVER_OBJ) $(LIBFT) $(PRINTF) -o $(SERVER_EXE)
+	@echo "$(SERVER_EXE) compiled."
 
 $(CLIENT_EXE): $(CLIENT_OBJ) $(LIBFT) $(PRINTF)
-	$(CC) $(FLAGS) $(CLIENT_OBJ) $(LIBFT) $(PRINTF) -o $(CLIENT_EXE)
+	@$(CC) $(FLAGS) $(CLIENT_OBJ) $(LIBFT) $(PRINTF) -o $(CLIENT_EXE)
 	@echo "$(CLIENT_EXE) compiled."
 
 $(LIBFT): 
-	make -sC $(LIBFT_DIR) 
+	@make -sC $(LIBFT_DIR) 
 
 $(PRINTF):
-	make -sC $(PRINTF_DIR)
+	@make -sC $(PRINTF_DIR)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@ 
+	@$(CC) $(FLAGS) -c $< -o $@ 
 
 clean:
-	$(RM) $(SERVER_OBJ) $(CLIENT_OBJ)
-	make -sC $(LIBFT_DIR) clean
-	make -sC $(PRINTF_DIR) clean
+	@$(RM) $(SERVER_OBJ) $(CLIENT_OBJ)
+	@make -sC $(LIBFT_DIR) clean
+	@make -sC $(PRINTF_DIR) clean
+	@echo "All objects cleaned"
 
 fclean: clean
-	$(RM) $(SERVER_EXE) $(CLIENT_EXE) $(LIBFT)
-	make -sC $(LIBFT_DIR) fclean
-	make -sC $(PRINTF_DIR) fclean
+	@$(RM) $(SERVER_EXE) $(CLIENT_EXE) $(LIBFT)
+	@make -sC $(LIBFT_DIR) fclean
+	@make -sC $(PRINTF_DIR) fclean
+	@echo "All executables cleaned"
 
 re: fclean all
 
