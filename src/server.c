@@ -6,7 +6,7 @@
 /*   By: crizapat <crizapat@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:01:38 by crizapat          #+#    #+#             */
-/*   Updated: 2025/01/30 16:49:45 by crizapat         ###   ########.fr       */
+/*   Updated: 2025/02/01 01:41:38 by crizapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,28 @@ static void reset_data_buffers()
 
 static void signal_handler(int signal)
 {
-	char *message;
+	if (signal == SIGUSR1)
+		g_server_buffer.byte = (g_server_buffer.byte << 1) | 1;	
+	else if (signal == SIGUSR2)
+		g_server_buffer.byte = (g_server_buffer.byte << 1) | 0;
+	g_server_buffer.bit++;
 
-	if (signal == SIGUSR1) {
-		g_server_buffer.bit = (g_server_buffer.bit << 1) | 1;	
+	if (g_server_buffer.bit == 8)
+	{
+		if (g_server_buffer.byte == '\0')
+		{
+			ft_printf("Message recieved.\n");
+			reset_data_buffers();
+		}
+		else
+		{
+			write(1, &g_server_buffer.byte, 1);
+			reset_data_buffers();
+		}
 	}
-	if (signal == SIGUSR2) {
-		g_server_buffer.bit = (g_server_buffer.bit << 1) | 0;	
-	}
-	g_server_buffer.byte++;
 }
 
-int main ()
+int main (void)
 {
 	int server_pid = getpid();
 	ft_printf("[SERVER PID] --> [%d]\n", server_pid);
@@ -46,6 +56,7 @@ int main ()
 
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
+	reset_data_buffers();
 
 	while(1)
 	{
