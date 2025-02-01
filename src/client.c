@@ -6,15 +6,18 @@
 /*   By: crizapat <crizapat@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:01:26 by crizapat          #+#    #+#             */
-/*   Updated: 2025/01/30 16:50:44 by crizapat         ###   ########.fr       */
+/*   Updated: 2025/02/01 01:48:47 by crizapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minitalk.h"
+#include <stdio.h>
+#include <unistd.h>
 
 void signal_emitter(int pid, char *message)
 {
-	int i, letter;
+	int letter;
+	int i;
 
 	letter = 0;
 	while (message[letter] != '\0')
@@ -33,17 +36,24 @@ void signal_emitter(int pid, char *message)
 		}
 		letter++;
 	}
+	i = 0;
+	while (++i < 8)
+	{
+		kill(pid, SIGUSR2);
+		usleep(50);
+	}
 }
+
 
 int main(int argc, char **argv)
 {
-	int process_id;
+	pid_t process_id;
 	char *message;
 
 	if (argc == 3)
 	{
 		process_id = ft_atoi(argv[1]);
-		if (process_id < 0)
+		if (process_id <= 0)
 		{
 			ft_printf("[WRONG PID] -- try again\n");
 			return 0;
