@@ -11,44 +11,42 @@
 /* ************************************************************************** */
 
 #include "../minitalk.h"
-#include <stdio.h>
-#include <unistd.h>
 
-void signal_emitter(int pid, char *message)
+void signal_emitter(pid_t pid, char *message)
 {
-	int letter;
+	int bit;
 	int i;
 
-	letter = 0;
-	while (message[letter] != '\0')
+	bit = 0;
+	while (message[bit] != '\0')
 	{
 		i = 7;
 		while (i >= 0)
 		{
-			if ((unsigned char)message[letter] & (1 << i)) {
+			if ((unsigned char)message[bit] & (1 << i))
 				kill(pid, SIGUSR1);
-			}
-			else {
+			else
 				kill(pid, SIGUSR2);
-			}
 			i--;
-			usleep(90);
+			usleep(200);
 		}
-		letter++;
+		bit++;
 	}
-	i = 0;
+	i = -1;
 	while (++i < 8)
 	{
 		kill(pid, SIGUSR2);
-		usleep(50);
+		usleep(200);
 	}
 }
 
 
 int main(int argc, char **argv)
 {
+	client_banner();
 	pid_t process_id;
 	char *message;
+
 
 	if (argc == 3)
 	{
@@ -67,8 +65,6 @@ int main(int argc, char **argv)
 		signal_emitter(process_id, message);
 	}
 	else
-	{
 		ft_printf("[INVALID ARGUMENTS] too few arguments, try again please");	
-	}
 	return 0;
 }
