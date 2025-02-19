@@ -6,7 +6,7 @@
 #    By: crizapat <crizapat@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 15:00:45 by crizapat          #+#    #+#              #
-#    Updated: 2025/02/01 02:17:32 by crizapat         ###   ########.fr        #
+#    Updated: 2025/02/04 16:44:05 by crizapat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ CLIENT_EXE	=	client
 #	SRCS ______________________________
 SERVER_SRC	=	./src/server.c	
 CLIENT_SRC	=	./src/client.c
+BANNERS_SRC =	./utils/misc/banners.c
 LIBFT_DIR	=	./utils/libft
 PRINTF_DIR	=	./utils/ft_printf
 LIBFT		=	$(LIBFT_DIR)/libft.a
@@ -30,16 +31,20 @@ PRINTF		=	$(PRINTF_DIR)/libftprintf.a
 #	OBJS ______________________________
 SERVER_OBJ	=	$(SERVER_SRC:.c=.o)
 CLIENT_OBJ	=	$(CLIENT_SRC:.c=.o)
+BANNER_OBJ	=	$(BANNERS_SRC:.c=.o)
 
-all: $(SERVER_EXE) $(CLIENT_EXE)
+all: $(SERVER_EXE) $(CLIENT_EXE) $(BANNER_OBJ)
 
-$(SERVER_EXE): $(SERVER_OBJ) $(LIBFT) $(PRINTF)
-	@$(CC) $(FLAGS) $(SERVER_OBJ) $(LIBFT) $(PRINTF) -o $(SERVER_EXE)
-	@echo "$(SERVER_EXE) compiled."
+$(BANNER_OBJ): $(BANNERS_SRC)
+	@$(CC) $(FLAGS) -c $(BANNERS_SRC) -o $(BANNER_OBJ)
 
-$(CLIENT_EXE): $(CLIENT_OBJ) $(LIBFT) $(PRINTF)
-	@$(CC) $(FLAGS) $(CLIENT_OBJ) $(LIBFT) $(PRINTF) -o $(CLIENT_EXE)
-	@echo "$(CLIENT_EXE) compiled."
+$(SERVER_EXE): $(SERVER_OBJ) $(BANNER_OBJ) $(LIBFT) $(PRINTF)
+	@$(CC) $(FLAGS) $(SERVER_OBJ) $(BANNER_OBJ) $(LIBFT) $(PRINTF) -o $(SERVER_EXE)
+	@echo "✅ $(SERVER_EXE) compiled success."
+
+$(CLIENT_EXE): $(CLIENT_OBJ) $(BANNER_OBJ) $(LIBFT) $(PRINTF)
+	@$(CC) $(FLAGS) $(CLIENT_OBJ) $(BANNER_OBJ) $(LIBFT) $(PRINTF) -o $(CLIENT_EXE)
+	@echo "✅ $(CLIENT_EXE) compiled success."
 
 $(LIBFT): 
 	@make -sC $(LIBFT_DIR) 
@@ -54,13 +59,13 @@ clean:
 	@$(RM) $(SERVER_OBJ) $(CLIENT_OBJ)
 	@make -sC $(LIBFT_DIR) clean
 	@make -sC $(PRINTF_DIR) clean
-	@echo "All objects cleaned"
+	@echo "🧹 All objects files cleaned"
 
 fclean: clean
 	@$(RM) $(SERVER_EXE) $(CLIENT_EXE) $(LIBFT)
 	@make -sC $(LIBFT_DIR) fclean
 	@make -sC $(PRINTF_DIR) fclean
-	@echo "All executables cleaned"
+	@echo "🚮 All executables and libraries cleaned"
 
 re: fclean all
 
