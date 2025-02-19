@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../minitalk.h"
-#include <stdio.h>
 
 t_bits_buffer g_server_buffer = {0, 0, NULL};
 
