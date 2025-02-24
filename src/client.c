@@ -12,10 +12,10 @@
 
 #include "../minitalk.h"
 
-void signal_emitter(pid_t pid, char *message)
+void	signal_emitter(pid_t pid, char *message)
 {
-	int bit;
-	int i;
+	int	bit;
+	int	i;
 
 	bit = 0;
 	while (message[bit] != '\0')
@@ -40,31 +40,29 @@ void signal_emitter(pid_t pid, char *message)
 	}
 }
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
+	pid_t	process_id;
+	char	*message;
+
 	client_banner();
-	pid_t process_id;
-	char *message;
-
-
 	if (argc == 3)
 	{
 		process_id = ft_atoi(argv[1]);
 		if (process_id <= 0)
 		{
 			ft_printf("[WRONG PID] -- try again\n");
-			return 0;
+			return (0);
 		}
 		message = argv[2];
 		if (message[0] == 0)
 		{
 			ft_printf("[WRONG MESSAGE] -- try again\n");
-			return 0;
+			return (0);
 		}
 		signal_emitter(process_id, message);
 	}
 	else
-		ft_printf("[INVALID ARGUMENTS] too few arguments, try again please");	
-	return 0;
+		ft_printf("[INVALID ARGUMENTS] too few arguments, try again please");
+	return (0);
 }
