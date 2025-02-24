@@ -20,11 +20,11 @@
 # include <signal.h>
 # include <unistd.h>
 
-typedef struct	s_bits_buffer
+typedef struct s_bits_buffer
 {
-	int bit;
-	int byte;
-	char *msg;
+	int		bit;
+	int		byte;
+	char	*msg;
 }				t_bits_buffer;
 
 #endif

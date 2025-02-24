@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		BANNERS_h 
-# define	BANNERS_h
+#ifndef BANNERS_H 
+# define BANNERS_H
 
-void			client_banner(void);
+# define CIAN "\x1b[36m"
+# define RESET	"\x1b[0m"
+
 void			server_banner(void);
 
 #endif

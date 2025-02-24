@@ -12,24 +12,9 @@
 
 #include "../../minitalk.h"
 
-#define MAGENTA	"\x1b[35m"
-#define CIAN "\x1b[36m"
-#define RESET	"\x1b[0m"
-
-void client_banner(void)
+void	server_banner(void)
 {
-    printf(MAGENTA" ██████╗██╗     ██╗███████╗███╗   ██╗████████╗\n"RESET);
-    printf(MAGENTA"██╔════╝██║     ██║██╔════╝████╗  ██║╚══██╔══╝\n"RESET);
-    printf(MAGENTA"██║     ██║     ██║█████╗  ██╔██╗ ██║   ██║   \n"RESET);
-    printf(MAGENTA"██║     ██║     ██║██╔══╝  ██║╚██╗██║   ██║   \n"RESET);
-    printf(MAGENTA"╚██████╗███████╗██║███████╗██║ ╚████║   ██║   \n"RESET);
-    printf(MAGENTA" ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   \n"RESET);
-	printf("PRINTER AREA________________________________________\n");
-}
-
-void server_banner(void)
-{
-	printf(CIAN"███████╗███████╗██████╗ ██╗   ██╗███████╗██████╗ \n"RESET); 
+	printf(CIAN"███████╗███████╗██████╗ ██╗   ██╗███████╗██████╗ \n"RESET);
 	printf(CIAN"██╔════╝██╔════╝██╔══██╗██║   ██║██╔════╝██╔══██╗\n"RESET);
 	printf(CIAN"███████╗█████╗  ██████╔╝██║   ██║█████╗  ██████╔╝\n"RESET);
 	printf(CIAN"╚════██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██╔══╝  ██╔══██╗\n"RESET);

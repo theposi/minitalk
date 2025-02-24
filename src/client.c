@@ -45,7 +45,6 @@ int	main(int argc, char **argv)
 	pid_t	process_id;
 	char	*message;
 
-	client_banner();
 	if (argc == 3)
 	{
 		process_id = ft_atoi(argv[1]);

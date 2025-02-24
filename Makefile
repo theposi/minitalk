@@ -56,7 +56,7 @@ $(PRINTF):
 	@$(CC) $(FLAGS) -c $< -o $@ 
 
 clean:
-	@$(RM) $(SERVER_OBJ) $(CLIENT_OBJ)
+	@$(RM) $(SERVER_OBJ) $(CLIENT_OBJ) $(BANNER_OBJ)
 	@make -sC $(LIBFT_DIR) clean
 	@make -sC $(PRINTF_DIR) clean
 	@echo "🧹 All objects files cleaned"

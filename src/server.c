@@ -83,8 +83,8 @@ int	main(void)
 	int					server_pid;
 	struct sigaction	sign;
 
-	server_pid = getpid();
 	server_banner();
+	server_pid = getpid();
 	ft_printf("[SERVER PID] --> [%d]\n", server_pid);
 	sign.sa_handler = &signal_handler;
 	sign.sa_flags = SA_RESTART;
