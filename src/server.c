@@ -86,6 +86,7 @@ int	main(void)
 	server_banner();
 	server_pid = getpid();
 	ft_printf("[SERVER PID] --> [%d]\n", server_pid);
+	ft_printf("RECEIVING AREA________________________________________\n");
 	sign.sa_handler = &signal_handler;
 	sign.sa_flags = SA_RESTART;
 	sigemptyset(&sign.sa_mask);
