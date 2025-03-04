@@ -28,7 +28,7 @@ static char	*append_char(char *str, char c)
 	len = 0;
 	if (str)
 		len = ft_strlen(str);
-	new_str = malloc(len + 2);
+	new_str = ft_calloc((len + 2), sizeof(char));
 	if (!new_str)
 		return (NULL);
 	if (str)
@@ -58,10 +58,7 @@ static void	process_byte(void)
 	{
 		temp = append_char(g_server_buffer.msg, g_server_buffer.byte);
 		if (!temp)
-		{
-			ft_printf("Error: Memory allocation failed.\n");
 			exit(1);
-		}
 		g_server_buffer.msg = temp;
 	}
 	reset_data_buffers();
@@ -81,18 +78,21 @@ static void	signal_handler(int signal)
 int	main(void)
 {
 	int					server_pid;
-	struct sigaction	sign;
 
 	server_banner();
 	server_pid = getpid();
 	ft_printf("[SERVER PID] --> [%d]\n", server_pid);
 	ft_printf("RECEIVING AREA________________________________________\n");
-	sign.sa_handler = &signal_handler;
-	sign.sa_flags = SA_RESTART;
-	sigemptyset(&sign.sa_mask);
-	sigaction(SIGUSR1, &sign, NULL);
-	sigaction(SIGUSR2, &sign, NULL);
 	while (1)
-		pause ();
+	{
+		struct sigaction	sign;
+		sign.sa_handler = &signal_handler;
+		sign.sa_flags = SA_RESTART;
+		sigemptyset(&sign.sa_mask);
+		sigaction(SIGUSR1, &sign, NULL);
+		sigaction(SIGUSR2, &sign, NULL);
+
+		usleep (500);
+	}
 	return (0);
 }
