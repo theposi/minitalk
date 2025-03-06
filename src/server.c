@@ -49,7 +49,8 @@ static void	process_byte(void)
 	{
 		if (g_server_buffer.msg)
 		{
-			ft_printf("%s\n", g_server_buffer.msg);
+			write(1, g_server_buffer.msg, ft_strlen(g_server_buffer.msg));
+			write(1, "\n", 1);
 			free(g_server_buffer.msg);
 			g_server_buffer.msg = NULL;
 		}
@@ -78,21 +79,18 @@ static void	signal_handler(int signal)
 int	main(void)
 {
 	int					server_pid;
+	struct sigaction	sign;
 
 	server_banner();
 	server_pid = getpid();
 	ft_printf("[SERVER PID] --> [%d]\n", server_pid);
 	ft_printf("RECEIVING AREA________________________________________\n");
+	sign.sa_handler = &signal_handler;
+	sign.sa_flags = SA_RESTART;
+	sigemptyset(&sign.sa_mask);
+	sigaction(SIGUSR1, &sign, NULL);
+	sigaction(SIGUSR2, &sign, NULL);
 	while (1)
-	{
-		struct sigaction	sign;
-		sign.sa_handler = &signal_handler;
-		sign.sa_flags = SA_RESTART;
-		sigemptyset(&sign.sa_mask);
-		sigaction(SIGUSR1, &sign, NULL);
-		sigaction(SIGUSR2, &sign, NULL);
-
-		usleep (500);
-	}
+		continue ;
 	return (0);
 }
