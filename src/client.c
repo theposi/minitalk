@@ -28,7 +28,7 @@ void	signal_emitter(pid_t pid, char *message)
 			else
 				kill(pid, SIGUSR2);
 			i--;
-			usleep(200);
+			usleep(100);
 		}
 		bit++;
 	}
@@ -36,7 +36,7 @@ void	signal_emitter(pid_t pid, char *message)
 	while (++i < 8)
 	{
 		kill(pid, SIGUSR2);
-		usleep(200);
+		usleep(100);
 	}
 }
 
