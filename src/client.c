@@ -62,6 +62,6 @@ int	main(int argc, char **argv)
 		signal_emitter(process_id, message);
 	}
 	else
-		ft_printf("[INVALID ARGUMENTS] too few arguments, try again please");
+		ft_printf("[INVALID ARGUMENTS] too few arguments, try again please\n");
 	return (0);
 }

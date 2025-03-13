@@ -59,13 +59,13 @@ clean:
 	@$(RM) $(SERVER_OBJ) $(CLIENT_OBJ) $(BANNER_OBJ)
 	@make -sC $(LIBFT_DIR) clean
 	@make -sC $(PRINTF_DIR) clean
-	@echo "🧹 All objects files cleaned"
+	@echo "All objects files cleaned"
 
 fclean: clean
 	@$(RM) $(SERVER_EXE) $(CLIENT_EXE) $(LIBFT)
 	@make -sC $(LIBFT_DIR) fclean
 	@make -sC $(PRINTF_DIR) fclean
-	@echo "🚮 All executables and libraries cleaned"
+	@echo "All executables and libraries cleaned"
 
 re: fclean all
 
