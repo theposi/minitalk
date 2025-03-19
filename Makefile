@@ -12,7 +12,7 @@
 
 #	FLAGS _____________________________
 CC			=	cc
-FLAGS		=	-Wall -Werror -Wextra
+FLAGS		=	-Wall -Werror -Wextra -g3 -fsanitize=address
 RM			=	rm -f
 
 #	CONFS _____________________________
