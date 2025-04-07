@@ -8,7 +8,6 @@ Minitalk es un programa que permite la comunicación entre procesos en sistemas 
 - [Uso](#uso)
 - [Ejemplo de Ejecución](#ejemplo-de-ejecución)
 - [Autores](#autores)
-- [Licencia](#licencia)
 
 ## Instalación
 
